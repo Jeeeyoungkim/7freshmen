@@ -55,6 +55,7 @@ button {
 }
 
 .inform_chatBalloon {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -62,6 +63,20 @@ button {
   width: 94px;
   height: 23px;
   background-color: white;
+}
+
+.inform_chatBalloon:after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 55%;
+  width: 0;
+  height: 0;
+  border: 7px solid transparent;
+  border-right-color: white;
+  border-left: 0;
+  margin-top: -9px;
+  margin-left: -9px;
 }
 
 .inform_chatBalloon > p {
@@ -270,6 +285,7 @@ button {
 }
 
 .chatBalloon {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -291,4 +307,18 @@ button {
   line-height: 15px;
   letter-spacing: -0.04em;
   color: #8c8c8c;
+}
+
+.chatBalloon:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 20%;
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-bottom-color: #ffffff;
+  border-top: 0;
+  margin-left: -10px;
+  margin-top: -10px;
 }
