@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from account.models import User
 
 # Create your models here.
 class Comment(models.Model):
@@ -10,3 +11,4 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.name
+

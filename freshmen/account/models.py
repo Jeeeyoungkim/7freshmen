@@ -21,10 +21,9 @@ class UserManager(BaseUserManager):
         user = self.model(
             user_id = user_id,
             username = username,
-            password = password,
             **extra_fields
         )
-        # user.set_password(password)
+        user.set_password(password)
         user.save (using=self._db)
         return user
     
@@ -36,6 +35,7 @@ class UserManager(BaseUserManager):
     def create_superuser(self,user_id,username,password,**extra_fields):
         extra_fields.setdefault('is_staff',True)
         extra_fields.setdefault('is_superuser',True)
+        extra_fields.setdefault('is_active',True)
 
         if extra_fields.get('is_staff') is not True:
             raise ValueError('Superuser must have is_staff = True')
@@ -45,9 +45,10 @@ class UserManager(BaseUserManager):
         return self._create_user(user_id,username,password,**extra_fields)
     
 class User(AbstractUser):
-    user_id = models.CharField(max_length=32, unique=True, verbose_name='아이디')
+    user_id = models.EmailField(max_length=128, unique=True, verbose_name='아이디')
     username = models.CharField(max_length=32, verbose_name='닉네임', unique=True)
     objects = UserManager()
+    is_active = models.BooleanField(default=False)
     USERNAME_FIELD = 'user_id'
     REQUIRED_FIELDS = ['username']
 
@@ -79,6 +80,12 @@ class Profile(models.Model):
         ('INFJ','INFJ'),
         ('INFP','INFP'),
     }
+
+    LIVE_CHOICES ={
+        ('Y', '유'), 
+        ('N', '무'),
+    }
+
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     school = models.CharField(max_length=128, null=True, blank=False)
     major = models.CharField(max_length=128, null=True, blank=False)
@@ -86,6 +93,13 @@ class Profile(models.Model):
     mbti = models.CharField(max_length=16, choices=MBTI_CHOICES, null=True)
     age = models.IntegerField(null=True)
     image = models.ImageField(blank=True, null=True, upload_to='profile/')
+    major = models.CharField(max_length=128, null=True, blank=False)
+
+    live = models.CharField(max_length=128, choices=LIVE_CHOICES, null=True)
+    favfood = models.CharField(max_length=128, null=True, blank=False)
+    drink = models.CharField(max_length=128, null=True, blank=False)
+    hometown = models.CharField(max_length=128, null=True, blank=False)
+    timetable = models.ImageField(blank=True, null=True, upload_to='profile/')
 
     # @receiver(post_save,sender=User)
     # def create_user_profile(sender,instance,created,**kwargs):

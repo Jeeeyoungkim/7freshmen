@@ -1,13 +1,14 @@
 from django import forms
 from .models import User, Profile
 from argon2 import PasswordHasher, exceptions
+from django.contrib.auth.hashers import make_password, check_password
 
 # 회원가입 폼
 class SignupForm(forms.ModelForm):
-    user_id = forms.CharField(
+    user_id = forms.EmailField(
         label='아이디',
         required=True,
-        widget=forms.TextInput(
+        widget=forms.EmailInput(
             attrs={
                 'class' : 'user-id',
                 'placeholder' : '아이디'
@@ -77,19 +78,19 @@ class SignupForm(forms.ModelForm):
         if user_pw != user_pw_confirm:
             raise forms.ValidationError('비밀번호가 일치하지 않습니다.')
         else:
+            self.user_pw = make_password(user_pw)
             self.user_id = user_id
             # self.user_pw = PasswordHasher().hash(user_pw)
-            self.user_pw = user_pw
             self.user_pw_confirm = user_pw_confirm
             self.username = username
 
 # 로그인 폼
 class LoginForm(forms.Form):
-    user_id = forms.CharField(
+    user_id = forms.EmailField(
         max_length=32,
         label='아이디',
         required=True,
-        widget=forms.TextInput(
+        widget=forms.EmailInput(
             attrs={
                 'class' : 'user-id',
                 'placeholder' : '아이디'
@@ -133,9 +134,13 @@ class LoginForm(forms.Form):
                 return self.add_error('user_id','아이디가 존재하지 않습니다.')
             
             try:
-                PasswordHasher().verify(user.user_pw,user_pw)
-            except exceptions.VerifyMismatchError:
+                # PasswordHasher().verify(user.password,user_pw)
+                check_password(user.password, user_pw)
+            # except exceptions.VerifyMismatchError:
+            except Exception:
                 return self.add_error('user_pw', '비밀번호가 일치하지 않습니다.')
+
+            self.login_session = user.user_id
 
 # 프로필 폼
 class ProfileForm(forms.ModelForm):
@@ -203,28 +208,83 @@ class ProfileForm(forms.ModelForm):
         error_messages={'required' : '나이를 입력해주세요.'}
     )
 
+    live = forms.CharField(
+        max_length=128,
+        label='자취유무',
+        required=True,
+        widget=forms.TextInput(
+            attrs={
+                'class' : 'live',
+                'placeholder' : '자취 유/무'
+            }
+        )
+    )
+
+    favfood = forms.CharField(
+        max_length=128,
+        label='음식',
+        required=True,
+        widget=forms.TextInput(
+            attrs={
+                'class' : 'favfood',
+                'placeholder' : '내가 선호하는 음식은?'
+            }
+        )
+    )
+
+    drink = forms.CharField(
+        max_length=128,
+        label='주량',
+        required=True,
+        widget=forms.TextInput(
+            attrs={
+                'class' : 'drink',
+                'placeholder' : '나의 주량은?'
+            }
+        )
+    )
+
+    hometown = forms.CharField(
+        max_length=128,
+        label='고향',
+        required=True,
+        widget=forms.TextInput(
+            attrs={
+                'class' : 'hometown',
+                'placeholder' : '나의 고향은?'
+            }
+        )
+    )
+
     field_order = [
         'school',
         'major',
         'gender',
         'mbti',
-        'age'
+        'age',
+        'live',
+        'favfood',
+        'drink',
+        'hometown'
     ]
 
     class Meta:
         model = Profile
         fields = [
-            'school','major','gender','mbti','age'
+            'school','major','gender','mbti','age',
+            'live','favfood','drink','hometown'
         ]
 
-    # def clean(self):
-    #     cleaned_data = super().clean()
+    def clean(self):
+        cleaned_data = super().clean()
 
-    #     self.school = cleaned_data.get('school','')
-    #     self.major = cleaned_data.get('major','')
-    #     self.gender = cleaned_data.get('gender','')
-    #     self.mbti = cleaned_data.get('mbti','')
-    #     self.age = cleaned_data.get('age','')
+        self.school = cleaned_data.get('school','')
+        self.major = cleaned_data.get('major','')
+        self.gender = cleaned_data.get('gender','')
+        self.mbti = cleaned_data.get('mbti','')
+        self.age = cleaned_data.get('age','')
 
-class FindIdForm(forms.Form):
-    nickname = forms.CharField(label='nickname')
+        self.live = cleaned_data.get('live','')
+        self.favfood = cleaned_data.get('favfood','')
+        self.drink = cleaned_data.get('drink','')
+        self.hometown = cleaned_data.get('hometown','')

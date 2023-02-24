@@ -1,0 +1,304 @@
+/* 배경 */
+
+.banner_s
+{
+    margin-top: 50px;
+    height:80px;
+    display: flex;
+    flex-direction: column;
+    
+}
+#logo_s
+{
+    position:absolute;
+    left:30px;
+    width:180px;
+}
+#flower2_s
+{
+    position: absolute;
+    height:25px;
+    top:18px;
+    left:160px;
+}
+#flower3_s
+{
+    position: absolute;
+    height:20px;
+    top:100px;
+    left:20px;
+}
+#chat_s
+{
+    width:250px;
+    align-self: end;
+    margin-top: 10px;
+}
+
+/* 입력창 */
+.inputbox
+{
+    box-sizing: border-box;
+    width: 307px;
+    height: 45px;
+    display: block;
+    background: #FFFFFF;
+    border: 2px solid #FFBEBE;
+    outline:  #FF5C5C;
+    border-radius: 15px;
+    z-index: 3;
+    margin-bottom:30px;
+    padding:10px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    /* identical to box height */
+
+    letter-spacing: -0.04em;
+
+    color: #8C8C8C;
+    }
+.inputboxs_sign .inputbox
+{
+    box-sizing: border-box;
+    width: 307px;
+    height: 45px;
+    display: block;
+    background: #FFFFFF;
+    border: 2px solid #FFBEBE;
+    outline:  #FF5C5C;
+    border-radius: 15px;
+    z-index: 3;
+    margin-bottom:20px;
+}
+.inputboxs,.inputboxs_sign
+{
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    margin: 0 auto;
+    margin-top: 10vh;
+
+}
+
+/* button */
+#login_button
+{
+    display: flex;
+    position: absolute;
+    width:400px;
+    top:420px;
+    z-index: 2;
+    align-items: center;
+    justify-content: center;
+}
+#sign_button
+{
+    position: absolute;
+    top:500px;
+    left:110px;
+    z-index:2;
+}
+.find_button
+{
+    display:flex;
+    position: absolute;
+    top:410px;
+    width:400px;
+    z-index:2;
+    align-items: center;
+    justify-content: center;
+}
+.find_button .button,#login_button .button, #to_login .button,#sign_button .button
+{
+    width:170px;
+}
+
+
+/* input */
+.findtext .inputbox,.find_input .inputbox
+{
+    width: 307px;
+    height: 70px;
+    display: block;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    margin: 10px;
+    /* identical to box height */
+
+    letter-spacing: -0.04em;
+
+    color: #5F5F5F;
+    align-items: center;
+    justify-content: center;
+    display:flex;
+
+}
+.findtext .inputbox
+{
+    height:90px;
+}
+.find_input .inputbox
+{
+    font-size:13px;
+}
+
+.id_password
+{
+
+    color:gray;
+    z-index: 2;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 17px;
+    align-items: center;
+    justify-content: center;
+    /* identical to box height */
+    display:flex;
+    letter-spacing: -0.04em;
+}
+
+#to_login
+{
+    position: absolute;
+    top:420px;
+    left:110px;
+    z-index:2;
+}
+
+.find_input
+{
+    position: absolute;
+    top:250px;
+    left:45px;
+    z-index: 2;
+}
+
+.findtext
+{
+    position: absolute;
+    z-index: 3;
+    top:230px;
+    left:41px;
+    align-items: center;
+    justify-content: center;
+}
+.findtext #findtext
+{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.find_input #findtext
+{
+    position: absolute;
+    top:-15px;
+    left:15px;
+}
+#findtext
+{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    /* identical to box height */
+
+    letter-spacing: -0.04em;
+
+    color: #5F5F5F;
+}
+
+
+/*form css*/
+
+#id_user_id{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    margin: 10px;
+    box-sizing: border-box;
+    background: #FFFFFF;
+    border: 2px solid #FFBEBE;
+    border-radius: 10px;
+    padding:5px 5px 5px 5px;
+    width: 248px;
+}
+
+#id_user_pw,#id_username,#id_user_pw_confirm{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    margin: 10px;
+    box-sizing: border-box;
+    width: 248px;
+    background: #FFFFFF;
+border: 2px solid #FFBEBE;
+border-radius: 10px;
+padding:5px 5px 5px 5px;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.Loginbutton {
+    display: block;
+    width: 248px;
+    height: 45px;
+    background: #ffbebe;
+    color: white;
+    border-radius: 15px;
+    border-color: #ffbebe;
+    z-index: 3;
+    margin-left : 10px;
+    margin-top:5vh;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 25px;
+    letter-spacing: -0.04em;
+    margin-bottom: 10px;
+  }
+.Loginbutton:hover {
+    background-color: #ff9f9f;
+    border-color: #ff9f9f;
+
+}
+
+.signBtn{
+    display: block;
+    width: 248px;
+    height: 45px;
+    background: #ffbebe;
+    color: white;
+    border-radius: 15px;
+    border-color: #ffbebe;
+    z-index: 3;
+    margin-left : 10px;
+    margin-top:5vh;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 25px;
+    letter-spacing: -0.04em;
+    margin-bottom: 10px;
+}

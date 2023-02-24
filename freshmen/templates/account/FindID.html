@@ -1,0 +1,18 @@
+{% extends 'elipse_base.html' %} {% block content %}
+
+        <div class="ground">
+            <div class="background">
+            </div>
+            <div class="banner_s">
+                <img id='logo_s' src="{% static 'img/logo2.png' %}" alt='logo' title='logo'/>
+            </div>
+            <img id='chat_s'src="{% static 'img/Logo.png' %}" alt='chat' title='chat'/>
+            <div class='find_input'>
+                <div id='findtext'>아이디 찾기</div>
+                <input class='inputbox' placeholder=' 닉네임을 입력하세요' onfocus="this.placeholder=''" 
+                onblur="this.placeholder=' 닉네임을 입력하세요'"></input>
+            </div>
+            <div class='find_button'><button class='button' onClick="location.href='FindShowID.html'">확인</button></div>
+        </div>
+
+{% endblock %}
